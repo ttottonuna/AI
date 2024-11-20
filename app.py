@@ -1,18 +1,19 @@
-from flask import Flask, request, jsonify  # Flask와 관련된 라이브러리 import
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-from gtts import gTTS  # gtts 라이브러리의 gTTS 클래스 import
-import pygame  # pygame 모듈 import
-import speech_recognition as sr  # SpeechRecognition 라이브러리 import하고 sr이라는 별칭으로 사용
-import requests  # requests 라이브러리 import
-from datetime import datetime  # datetime 모듈의 datetime 클래스 import
-import time  # 일정 시간 대기 기능을 위해 time 모듈 import
+from gtts import gTTS
+import pygame
+import speech_recognition as sr
+import requests
+from datetime import datetime
+import time
 import os
+from pydub import AudioSegment
+from pydub.playback import play
 
+app = Flask(__name__)
+CORS(app)
 
-app = Flask(__name__)  # Flask 애플리케이션 생성
-CORS(app)  # CORS 허용
-
-API_KEY = "5e8a77f0-a667-11ef-b7e6-15a68f653b01b7c1d83b-8f9c-4e88-94cd-a8b10ead7c86"
+API_KEY = "313d7170-a68b-11ef-b7e6-15a68f653b01b0694326-e29d-493f-8384-9d06d4feabd9"
 
 @app.route('/')
 def index():
@@ -22,10 +23,9 @@ def index():
 def handle_interaction():
     r = sr.Recognizer()
     cnt = 1
-    is_running = True  # 반복 상태를 관리하는 변수
+    is_running = True
 
     while is_running:
-        # 음성 녹음 및 인식 시작
         with sr.Microphone() as source:
             print("녹음 시작")
             r.adjust_for_ambient_noise(source)
@@ -39,7 +39,7 @@ def handle_interaction():
                 print("인식된 텍스트:", text)
             else:
                 print("텍스트를 인식하지 못했습니다.")
-                continue  # 텍스트를 인식하지 못하면 다음 루프로 이동
+                continue
 
             url = f"https://machinelearningforkids.co.uk/api/scratch/{API_KEY}/classify"
             response = requests.get(url, params={"data": text})
@@ -58,30 +58,41 @@ def handle_interaction():
             if confidence < 60:
                 answer = "잘 모르겠어요"
             elif label == "hello":
-                answer = "안녕하세요, 반가워요."
+                answer = "안녕하세요, 저는 무럭이에요."
             elif label == "time":
-                answer = f"지금은 {datetime.now().strftime('%H시 %M분')}입니다."
+                answer = f"지금은 {datetime.now().strftime('%H시 %M분')}이에요."
             elif label == "weather":
                 answer = "날씨가 화창해요."
             elif label == "meal":
                 answer = "점심으로 제육볶음을 추천해요."
             elif label == "exit":
                 answer = "네, 종료할게요."
-                is_running = False  # exit 명령이 들어오면 루프 종료
+                is_running = False
 
-            # 디렉토리 생성 및 파일 경로 설정
             os.makedirs("audio", exist_ok=True)
-            speech = f"audio/answer{cnt}.mp3"
+            speech_path = f"audio/answer{cnt}.mp3"
             tts = gTTS(answer, lang="ko")
-            tts.save(speech)
+            tts.save(speech_path)
 
-            # 음성 재생 및 pygame 리소스 해제
+            # pydub을 사용하여 음성 파일 로드
+            sound = AudioSegment.from_file(speech_path)
+
+            # 피치 조절: 8% 빠르게 재생하여 어린이 목소리 효과
+            new_sample_rate = int(sound.frame_rate * 1.08)
+            high_pitch_sound = sound._spawn(sound.raw_data, overrides={'frame_rate': new_sample_rate})
+            high_pitch_sound = high_pitch_sound.set_frame_rate(44100)
+
+            # 조절된 음성 파일 저장
+            modified_speech_path = f"audio/modified_answer{cnt}.mp3"
+            high_pitch_sound.export(modified_speech_path, format="mp3")
+
+            # pygame을 사용하여 음성 재생
             pygame.mixer.init()
-            pygame.mixer.music.load(speech)
+            pygame.mixer.music.load(modified_speech_path)
             pygame.mixer.music.play()
             while pygame.mixer.music.get_busy():
                 time.sleep(0.1)
-            pygame.mixer.quit()  # pygame 리소스 해제
+            pygame.mixer.quit()
 
             cnt += 1
 
@@ -90,8 +101,7 @@ def handle_interaction():
         except sr.RequestError as e:
             print(f"요청 실패: {e}")
 
-    return jsonify({"message": "음성 인식이 종료되었습니다."})
-
+    return jsonify({"message": "무럭이와 함께라 행복해요💚"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050)
