@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app)
 
 # API 키
-API_KEY = "313d7170-a68b-11ef-b7e6-15a68f653b01b0694326-e29d-493f-8384-9d06d4feabd9"
+API_KEY = "378s9d8d8fefefe234-123b-123123adfff-b7e6-158wdbk226-e29d-hhhh-1212-1hfhehdjwjdkekekkdls23kkdjjf"
 
 # FFmpeg 경로
 AudioSegment.converter = r"C:\ffmpeg\bin\ffmpeg.exe"
