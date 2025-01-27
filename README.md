@@ -1,9 +1,33 @@
-# Mooluck AI
+### Mooluck AI
 
-## 🌱 Introduction
-반려식물 “무럭이”서비스는 단순한 대화 및 터치만을 통해 독거노인께는 정서적 안정을 지원하고, 독거 노인 돌봄 기관 측에서는 이를 통한 상호작용 데이터를 통해 모니터링이 가능하도록 한 B2G 서비스입니다.
+<br>
+<div align="center">
+  <h1>[ 무럭이 키우기 ] </h1>
+  <p>🌱 TTS / STT 기능을 통한 양방향 소통이 가능한 독거노인을 위한 반려식물 서비스 🌱</p>
+</div>
+
+
+
+## 🌿 Introduction
+반려식물 “무럭이”는 단순한 대화 및 터치만을 통해 독거노인께는 정서적 안정을 지원하고, 독거 노인 돌봄 기관 측에서는 이를 통한 상호작용 데이터를 통해 모니터링이 가능하도록 한 B2G 서비스입니다.
 <br>
 <br>
+
+
+
+## ✍️ 프로젝트 개요
+
+- **프로젝트명:** 무럭이 키우기
+- **프로젝트 기간:** 2024.09 ~ 2024.11.21 (고도화 기간 : 2024.12.03 ~ 2025.01.23)
+- **프로젝트 형태:** 해커톤 참가 프로젝트
+- **목표:**
+  - 독거노인의 정서적 안정을 위한 반려식물 서비스 지원
+  - 돌봄기관 측에 편리하고 빠르게 노인들을 관리할 수 있는 서비스 제공
+- **주요 타겟 사용자:** 독거 노인 돌봄 기관 측에서 도입, 실 사용자는 소외된 독거노인 분들을 실타겟층으로 설정
+
+<br>
+<br>
+
 
 ## 💻 프로젝트 팀 소개 💻
 <div align="center">
@@ -19,6 +43,7 @@
 <br>
 <br>
 
+
 ## 💬 About Our Service
 <div align="center">
   <img width="500" src="https://github.com/user-attachments/assets/23ef9928-d280-48c6-9ce8-9173cc11d3cd" />
@@ -30,13 +55,9 @@
 <br>
 </div>
 
-## ✔ Service
-<div align="center">
-    <img width="400" height="250" src="https://github.com/user-attachments/assets/f51b6fdb-e16d-43fd-af5e-8c750d6de988" />
-    <img width="400" height="250" src="https://github.com/user-attachments/assets/2bdc9f44-4b99-4c4e-82e2-94db1455728f" />
-    <p> (왼쪽 사진 : 무럭이 페이지 / 오른쪽 사진 : 관리자 페이지 ) </p>
-</div>
-<br>
+**서비스 특징**
+
+
 1️⃣ STT/TTS를 통한 무럭이와의 양방향 소통 <br>
 2️⃣ 정서적 안정을 위한 물주기 기능과 쓰다듬기 기능 <br>
 3️⃣ 위치 기반 서비스를 통한 날씨 알려주기 기능<br>
@@ -44,16 +65,79 @@
 <br>
 <br>
 
-## ✔ System Architecture
+## 📌 주요 기능
+### **0. 회원가입 | 로그인**
+
+
+#### **로그인**
+- 가장 첫 화면은 노인 계정 로그인 화면으로, 오른쪽 아래의 "관리자" 버튼을 누르게 될 경우 관리자 로그인 페이지로 넘어가게 됩니다.
+- 로그인을 두 가지 페이지로 나눠두었으며 다음과 같이 이동합니다.
+    - 일반 사용자 ⇒ 무럭이 페이지
+    - 관리자 ⇒ 관리자 페이지
+
 <div align="center">
-  <img width="485" alt="스크린샷 2025-01-23 오후 4 17 05" src="https://github.com/user-attachments/assets/4567b7f3-df2b-450d-b9e9-72a1c6ffaeb5" />
+<img width="500" src="https://github.com/user-attachments/assets/6d4c20bd-5563-449d-8b4d-6fe29e54879e" /><img width="500" src="https://github.com/user-attachments/assets/2ed42fe5-76d6-476d-aab3-1ddd84db8f9d" />
+  <p>(왼쪽 : 고령자 계정 로그인 페이지 | 오른쪽 : 관리자 계정 로그인 페이지) </p>
 </div>
 <br>
 <br>
 
-## ✔ ERD diagram
+
+
+#### **신규 관리자 회원가입**
 <div align="center">
-  <img width="751" src="https://github.com/user-attachments/assets/5f04ac74-6bba-48b2-a5df-9743067a496d" />
+<img width="600" src="https://github.com/user-attachments/assets/ba03a155-b2d1-45a2-8a5c-9987caa89154" />
+</div>
+
+- 회원가입의 경우 관리자만 신규로 회원가입이 가능하며, 노인 계정의 경우 관리자가 직접 추가 / 입력하는 방식으로 구성하여 노인분들이 직접 회원가입을 하거나 하는 상황을 최소화하도록 하였습니다.
+
+<br>
+<br>
+
+
+
+### **1. 메인 화면**
+<div align="center">
+    <img width="600" height="350" src="https://github.com/user-attachments/assets/f51b6fdb-e16d-43fd-af5e-8c750d6de988" />
+</div>
+
+
+- 양방향 소통 가능 : 대화 버튼을 누르면 무럭이와 대화가 가능하며, 위는 실제 무럭이와 대화가 진행되고 있는 장면입니다.
+- 날씨 정보 제공 : 위치 기반 서비스를 통해 그 지역의 현재 날씨가 배경으로 나오고 있습니다.
+- 물 주기 기능 : 정해진 시간에 맞춰서 화면에 알람이 뜨고, 그 시간에 맞춰 무럭이를 터치하게 될 경우 무럭이에게 물을 줄 수 있으며 관리자 측에서 이 소통 결과가 로그로 쌓이게 됩니다.
+- 쓰다듬기 기능 : 지정한 물 주기 시간 이외에 터치하게 될 경우 무럭이를 쓰다듬을 수 있으며, 이 결과 또한 관리자 측에서 로그로 확인할 수 있습니다.
+
+
+
+### **2. 관리자 페이지**
+<div align="center">
+    <img width="600" src="https://github.com/user-attachments/assets/003aae21-585a-4f70-8ebd-0cb652ddbaee" />
+</div>
+
+
+
+- 관리자 측에서 관리하고 있는 노인분들에 대한 데이터와 로그 확인이 가능합니다.
+- 상호작용 횟수
+  - 0회: 빨간색으로 '위험' 표시
+  - 1회: 주황색으로 '경고' 표시
+  - 2회 이상: 초록색으로 '양호' 표시	
+
+#### 관리자 페이지 특징
+<div align="center">
+<img width="1200" src="https://github.com/user-attachments/assets/53f190af-6404-489c-b28c-29ed70973c13" />
+</div>
+<br>
+
+## ✔ System Architecture
+<div align="center">
+  <img width="800" src="https://github.com/user-attachments/assets/f931153e-740a-4388-80b0-e862c70385c5" />
+</div>
+<br>
+<br>
+
+## ✔ ER Diagram
+<div align="center">
+  <img width="800" src="https://github.com/user-attachments/assets/5f04ac74-6bba-48b2-a5df-9743067a496d" />
 </div>
 <br>
 <br>
