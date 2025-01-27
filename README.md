@@ -77,7 +77,7 @@
 
 <div align="center">
 <img width="500" src="https://github.com/user-attachments/assets/6d4c20bd-5563-449d-8b4d-6fe29e54879e" /><img width="500" src="https://github.com/user-attachments/assets/2ed42fe5-76d6-476d-aab3-1ddd84db8f9d" />
-  <p>(왼쪽 : 고령자 계정 로그인 페이지 | 오른쪽 : 관리자 계정 로그인 페이지) </p>
+  <p>(첫번째 사진 : 고령자 계정 로그인 페이지 | 두번째 사진 : 관리자 계정 로그인 페이지) </p>
 </div>
 <br>
 <br>
